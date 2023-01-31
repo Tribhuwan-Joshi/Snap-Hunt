@@ -6,7 +6,11 @@ module.exports = {
     "public/*.{html,js}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      cursor:{
+        'aim' :   'url(./assets/cur.png) , crosshair',
+      }
+    },
   },
   plugins: [],
 }

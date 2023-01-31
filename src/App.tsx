@@ -16,7 +16,7 @@ function Timer(){
 function Characters(){
   return <div className='hidden md:flex lg:flex  justify-evenly flex- gap-10  items-center'>
 {characters.map(i => {
- return <div key={i.alt} className=" flex-1 w-[5vw]  duration-500  items-center flex-col transistion ease-in-out flex md:hover:scale-110 "> <img  src={i.url}  title={i.alt} alt={i.alt}/> <div className='text-xs'>{i.alt}</div> </div>
+ return <div key={i.alt} className=" flex-1 w-[5vw]  duration-500  items-center flex-col transistion ease-in-out flex md:hover:scale-110 "> <img  src={i.url}   alt={i.alt}/> <div className='text-xs'>{i.alt}</div> </div>
 })}
 
   </div>
@@ -27,7 +27,7 @@ function CharacterMobile(){
   return <div className='character-mobile md:hidden flex  fixed left-[50%] translate-x-[-50%] origin-center mx-auto w-[80%] text-white h-14 bg-red-500/70 '>
 
 {characters.map(i => {
- return <div key={i.alt} className=" flex-1   duration-500  items-center transistion ease-in-out flex  "> <img  src={i.url} className="w-[14vw] min-w-[40px]"  title={i.alt} alt={i.alt}/> <div className='text-xs'>{i.alt}</div> </div>
+ return <div key={i.alt} className=" flex-1   duration-500  items-center transistion ease-in-out flex  "> <img  src={i.url} className="w-[12vw] min-w-[45px] h-auto"  title={i.alt} alt={i.alt}/> <div className='text-xs'>{i.alt}</div> </div>
 })}
   </div>
 }
@@ -38,7 +38,7 @@ function Hamburger(){
 
 function Header(){
   
-  return <div className='h-13  md:px-2 lg:px-3 text-white  md:h-[13vh] flex justify-around lg:justify-between  md:justify-between items-center sticky top-0 z-50  w-full bg-gray-900 border-red-400  border-b-2 '>
+  return <div className='h-12  md:px-2 lg:px-3 text-white  md:h-[13vh] flex justify-around lg:justify-between  md:justify-between items-center sticky top-0 z-50  w-full bg-gray-900 border-red-400  border-b-2 '>
 <h1 className='text-[28px] md:text-[40px] lg:text-[48px] md:ml-2'>Snap<span className='text-red-500'>Hunt</span></h1>
 <Timer/>
 <Characters/>
@@ -47,7 +47,7 @@ function Header(){
   
 }
 function Main(){
-  return <div className='main-app'>
+  return <div className= 'main-app cursor-aim  caret-black'>
   <img src={univ} alt="univ" />
   </div>
 }
