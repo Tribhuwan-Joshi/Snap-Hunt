@@ -9,12 +9,12 @@ const contextMenu =  (e:React.MouseEvent<HTMLDivElement>) => {
     }
    
       const menu = document.createElement("div");
-      menu.classList.add("menu","z-1000", "w-[100px]" , "h-[100px]", "absolute","text-center","border","border-solid","border-black","bg-gray-400");
-      menu.innerHTML = `<ul className='list-none min-w-[100px]'>
-      <li className='border border-solid border-black hover:bg-gray-200/50'>Spike</li>
-      <li className='border border-solid border-black hover:bg-gray-200/50'>Stewie</li>
-      <li className='border border-solid border-black hover:bg-gray-200/50'>Tom</li>
-    </ul>`;
+      menu.classList.add("menu","z-1000","text-white","w-20", "flex","flex-col","justify-between", "min-w-16", "absolute","text-center","border","border-solid","border-black","bg-black/70");
+      menu.innerHTML = `
+      <h1 class="border-b-2 cursor-pointer border-gray-500">Spike</h1>
+      <h1 class="border-b-2 cursor-pointer border-gray-500">Stewie</h1>
+      <h1 class="cursor-pointer">Tom</h1>
+     `;
     menu.style.left =`${e.pageX}px`;
     menu.style.top =`${e.pageY}px`;
 
@@ -27,6 +27,7 @@ const contextMenu =  (e:React.MouseEvent<HTMLDivElement>) => {
 const handleClick = () =>{
   if(document.querySelector(".menu")){
     document.querySelector(".menu")?.remove();
+    console.log("cool");
   }
 
 }

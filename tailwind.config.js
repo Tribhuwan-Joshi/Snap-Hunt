@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       cursor:{
-        'aim' :   'url(./assets/cur.png) 13 11, crosshair',
+        'aim' :   'url(./assets/cur.png) 25 25, crosshair',
       }
     },
   },

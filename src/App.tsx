@@ -3,6 +3,7 @@ import univ from "./assets/univ.jpg"
 import spike from "./assets/spike.jpg"
 import stewie from "./assets/stewie.png"
 import tom from "./assets/tom.png"
+import hamburger from "./assets/hamburger.png"
 import { contextMenu,handleClick } from './utility';
 const characters:Array<{url:string , alt:string}> = [{url:spike,alt:"Spike"},{url:stewie,alt:"Stewie"},{url:tom,alt:"Tom"}];
 
@@ -34,7 +35,7 @@ function CharacterMobile(){
 }
 
 function Hamburger(){
-  return <div className='bg-gray-500 hover:cursor-pointer md:hidden flex-grow-0 flex flex-col gap-1 w-[30px] py-1 items-center rounded-md'><span className='w-[16px] bg-white h-[2px]'></span> <span className='w-[16px] bg-white h-[2px]'></span> <span className='w-[16px] bg-white h-[2px]'></span></div>
+  return <img src={hamburger} className="md:hidden lg:hidden" alt="show" />
 }
 
 function Header(){
