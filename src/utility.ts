@@ -5,19 +5,36 @@ const contextMenu =  (e:React.MouseEvent<HTMLDivElement>) => {
 
     if(document.querySelector(".menu")){
       document.querySelector(".menu")?.remove();
+      document.querySelector(".marker")?.remove();
+      
+      
       
     }
    
       const menu = document.createElement("div");
-      menu.classList.add("menu","z-1000","text-white","w-20", "flex","flex-col","justify-between", "min-w-16", "absolute","text-center","border","border-solid","border-black","bg-black/70");
+      menu.classList.add("menu","rounded-md" ,"z-1000","text-white","w-24", "flex","flex-col","py-1","justify-center", "min-w-16", "absolute","text-center","border","border-solid","border-black","bg-black/80");
       menu.innerHTML = `
-      <h1 class="border-b-2 cursor-pointer border-gray-500">Spike</h1>
-      <h1 class="border-b-2 cursor-pointer border-gray-500">Stewie</h1>
-      <h1 class="cursor-pointer">Tom</h1>
+      <h1 class="border-b-2  py-1 cursor-pointer hover:bg-gray-900/70 border-gray-500 text-lg">Spike</h1>
+      <h1 class="border-b-2  py-1 cursor-pointer hover:bg-gray-900/70 border-gray-500 text-lg">Stewie</h1>
+      <h1 class="cursor-pointer py-1  text-lg hover:bg-gray-900/70">Tom</h1>
      `;
     menu.style.left =`${e.pageX}px`;
     menu.style.top =`${e.pageY}px`;
 
+    // circle 
+    const circle = document.createElement("div");
+    circle.classList.add("marker");
+    circle.style.borderRadius = "100%";
+    circle.style.border = "4px dashed red";
+    circle.style.backgroundColor = "rgba(255,255,255,0.7)";
+   circle.classList.add("absolute");
+    circle.style.width = "50px";
+    circle.style.height = "50px";
+    circle.style.left =`${e.pageX-25}px`;
+    circle.style.top =`${e.pageY-25}px`;
+
+
+    document.body.appendChild(circle);
     document.body.appendChild(menu);
     
 
@@ -27,9 +44,21 @@ const contextMenu =  (e:React.MouseEvent<HTMLDivElement>) => {
 const handleClick = () =>{
   if(document.querySelector(".menu")){
     document.querySelector(".menu")?.remove();
+    document.querySelector(".marker")?.remove();
     console.log("cool");
   }
 
 }
+const toggleHam = () => {
+ const char =  document.querySelector(".mobile-char");
+ if(char?.classList.contains("flex")){
+  char.classList.add("hidden");
+  char.classList.remove("flex");
+ }
+ else{
+  char?.classList.remove("hidden");
+  char?.classList.add("flex");
+ }
+}
 
-export {contextMenu ,handleClick}
+export {contextMenu ,handleClick,toggleHam}
