@@ -12,21 +12,21 @@ const contextMenu =  (e:React.MouseEvent<HTMLDivElement>) => {
     }
    
       const menu = document.createElement("div");
-      menu.classList.add("menu","rounded-md" ,"z-1000","text-white","w-24", "flex","flex-col","py-1","justify-center", "min-w-16", "absolute","text-center","border","border-solid","border-black","bg-black/80");
+      menu.classList.add("menu","rounded-md" ,"z-1000", "px-1","text-white","w-24", "flex","flex-col","py-1","justify-center", "min-w-16", "absolute","text-center","border","border-solid","border-black","bg-black/80");
       menu.innerHTML = `
-      <h1 class="border-b-2  py-1 cursor-pointer hover:bg-gray-900/70 border-gray-500 text-lg">Spike</h1>
-      <h1 class="border-b-2  py-1 cursor-pointer hover:bg-gray-900/70 border-gray-500 text-lg">Stewie</h1>
-      <h1 class="cursor-pointer py-1  text-lg hover:bg-gray-900/70">Tom</h1>
+      <h1 class="border-b-2  py-1 cursor-pointer active:bg-gray-500/70 hover:bg-gray-700/70 border-gray-500 text-md">Spike</h1>
+      <h1 class="border-b-2  py-1 cursor-pointer active:bg-gray-500/70 hover:bg-gray-700/70 border-gray-500 text-md">Stewie</h1>
+      <h1 class="cursor-pointer py-1  text-md active:bg-gray-500/70 hover:bg-gray-700/70">Tom</h1>
      `;
-    menu.style.left =`${e.pageX}px`;
-    menu.style.top =`${e.pageY}px`;
+    menu.style.left =`${e.pageX+20}px`;
+    menu.style.top =`${e.pageY+20}px`;
 
     // circle 
     const circle = document.createElement("div");
     circle.classList.add("marker");
     circle.style.borderRadius = "100%";
     circle.style.border = "4px dashed red";
-    circle.style.backgroundColor = "rgba(255,255,255,0.7)";
+    circle.style.backgroundColor = "rgba(255,255,255,0.4)";
    circle.classList.add("absolute");
     circle.style.width = "50px";
     circle.style.height = "50px";
