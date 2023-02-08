@@ -1,5 +1,5 @@
 import univ from "../../assets/univ.jpg"
-import Modal from "../startModal"
+import Modal from "./startModal"
 import FeedBack from "./Feedback"
 
 
