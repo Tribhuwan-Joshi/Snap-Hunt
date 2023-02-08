@@ -1,4 +1,5 @@
 import univ from "../../assets/univ.jpg"
+import Modal from "../startModal"
 import FeedBack from "./Feedback"
 
 
@@ -6,7 +7,8 @@ function Main({contextMenu,handleClick} : {contextMenu : (e: React.MouseEvent<HT
   
     return <div className= 'main-app  cursor-aim  caret-black' onContextMenu={contextMenu} onClick={handleClick}>
     <img src={univ} alt="univ" />
-    <FeedBack isCorrect={true}/>
+    <FeedBack isCorrect={false}/>
+
     </div>
   }
 

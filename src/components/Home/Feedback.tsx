@@ -4,8 +4,8 @@ import React from "react"
 type FeedBackProp = {isCorrect:boolean}
 
 function FeedBack({isCorrect}:FeedBackProp){
-const message = isCorrect ? "Correct !" : "Oops , wrong match ."
-    return <div className="py-2 px-1  border-2 font-sans tracking-wide mx-auto left-[50%] translate-x-[-50%]  border-white fixed top-14 md:top-[13vh]  rounded-lg bg-green-600 text-white md:text-xl">{message}</div>
+const message = isCorrect ? "Correct !" : "Wrong Match"
+    return <div className="p-2 cursor-pointer  border-2 font-sans tracking-wide mx-auto left-[50%] translate-x-[-50%]  border-white fixed top-14 md:top-[13vh]  rounded-lg bg-red-600/80 text-white md:text-lg">{message}</div>
 }
 
 export default FeedBack;
