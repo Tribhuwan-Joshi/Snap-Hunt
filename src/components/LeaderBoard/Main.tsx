@@ -10,19 +10,20 @@ justify-content : center;
 const  Table = styled.table`
 
 table-layout : auto;
-border : 2px solid black;
+border : 2px solid white;
 border-collapse : collapse;
-width:60%;
+width:50%;
 background-color: rgb(107 114 128);
 text-align : center;
-color:rgb(229 231 235)
+color:rgb(229 231 235);
+border-radius:10px;
 
 `
 
 const TableData = styled.td`
 padding : p-1;
 letter-spacing:1px;
-border:2px solid rgb(31, 41, 5);
+border:2px solid white;
 &.name {
     font-weight : 600;
 }
@@ -39,10 +40,10 @@ function TableContainer(){
 <Table>
     <thead className="bg-gray-800 text-base md:text-xl  ">
         <tr>
-            <th className="whitespace-nowrap w-[30%] p-1 md:p-2 lg:p-3">
+            <th className="whitespace-nowrap w-[20%] p-1 md:p-2 lg:p-3">
                 Rank
             </th>
-            <th className="whitespace-nowrap w-[30%] p-1 md:p-2 lg:p-3">
+            <th className="whitespace-nowrap w-[40%] p-1 md:p-2 lg:p-3">
                 Name
             </th>
             <th className="whitespace-nowrap w-[40%] p-1 md:p-2 lg:p-3">
@@ -50,9 +51,9 @@ function TableContainer(){
             </th>
         </tr>
     </thead>
-    <tbody className="text-base  lg:text-xl md:text-lg">
+    <tbody className="text-base text-black lg:text-xl md:text-lg">
         {
-        fakeData.map((data,rank) => <tr className="border  text-center even:bg-gray-600" key={data.name+rank}><TableData>{rank+1===1?"🥇 ":'\u00A0 \u00A0 \u00A0'}{(rank+1)}</TableData> <TableData className="font-semibold">{data.name.slice(0,1).toUpperCase().concat(data.name.slice(1))}</TableData> <TableData>{data.tt}</TableData> </tr>)}
+        fakeData.map((data,rank) => <tr className="border  text-center even:bg-gray-400" key={data.name+rank}><TableData>{rank+1===1?"🥇 ":'\u00A0 \u00A0 \u00A0'}{(rank+1)}</TableData> <TableData className="font-semibold">{data.name.slice(0,1).toUpperCase().concat(data.name.slice(1))}</TableData> <TableData>{data.tt}</TableData> </tr>)}
     </tbody>
     </Table>
    </TableWrapper>
