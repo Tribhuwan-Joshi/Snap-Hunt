@@ -8,7 +8,7 @@ function EndModal() {
           You took 103.3 seconds{" "}
         </h1>
         <div className="flex gap-2 flex-col items-center justify-evenly">
-          <input placeholder="Username" name="username" minLength={3} maxLength ={10} className="p-1 text-black"></input>
+          <input placeholder="Username" name="username" minLength={3} maxLength ={20} className="p-1 text-black"></input>
           <button className="bg-gray-300 hover:bg-purple-200 active:bg-green-200 md:hover:scale-110 transition duration-500 ease-in-out text-black rounded-md px-2 py-1 font-sans my-4   md:text-xl  text-lg">
             Leaderboard
           </button>

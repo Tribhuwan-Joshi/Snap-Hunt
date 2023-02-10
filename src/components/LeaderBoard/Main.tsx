@@ -1,5 +1,6 @@
 import styled from "styled-components"
-
+import React from "react"
+import {useState,useEffect} from "react"
 
 const TableWrapper = styled.div`
 width : 100%;
@@ -13,7 +14,7 @@ const  Table = styled.table`
 table-layout : auto;
 border-collapse : collapse;
 width:50%;
-background-color:#94b8b8;
+background-color:	#D3D3D3;
 text-align : center;
 color:rgb(229 231 235);
 border-radius:10px;
@@ -29,33 +30,46 @@ border:2px solid black;
 }
 `
 
-const fakeData = [{name:"tjsm" , tt:"123"} , {name:"lol" , tt:"321"} , {name:"pol" , tt:"999"}, {name:"xyz" ,tt:"908.12"}
-
-]
 
 
 function TableContainer(){
 
+interface Data{
+    userId:number;
+    title:string;
+
+}
+const [loaded , setIsLoaded] = useState(false);
+const [fakeData,setFakeData] = useState<Data[]>([]);
+useEffect(()=>{
+const getData = async () => {
+    const res =  await  fetch('https://jsonplaceholder.typicode.com/posts').then((res)=>res.json());
+    setFakeData(res);
+    console.log(fakeData)
+}
+ getData();
+})
+
     return <TableWrapper>
 <Table>
     <caption className="text-base md:text-xl p-1">Your Rank : 129</caption>
-    <thead className="bg-gray-800 text-base md:text-xl   ">
+    <thead className="bg-blue-600 text-base md:text-xl   ">
         <tr>
-            <th className="whitespace-nowrap  w-[20%] p-1 md:p-2 lg:p-3">
+            <th className="whitespace-nowrap  w-[20%] p-1 md:p-2">
                 Rank
             </th>
-            <th className="whitespace-nowrap  w-[40%] p-1 md:p-2 lg:p-3">
+            <th className="whitespace-nowrap  w-[40%] p-1 md:p-2">
                 Name
             </th>
-            <th className="whitespace-nowrap  w-[40%] p-1 md:p-2 lg:p-3">
+            <th className="whitespace-nowrap  w-[40%] p-1 md:p-2">
                 Time Taken (sec)
             </th>
         </tr>
     </thead>
-    <tbody className="text-base text-black lg:text-xl md:text-lg">
+    {fakeData ?    <tbody className="text-base text-black lg:text-xl md:text-lg">
         {
-        fakeData.map((data,rank) => <tr className="border  text-center even:bg-gray-400" key={data.name+rank}><TableData>{rank+1===1?"🥇 ":'\u00A0 \u00A0 \u00A0'}{(rank+1)}</TableData> <TableData className="font-semibold">{data.name.slice(0,1).toUpperCase().concat(data.name.slice(1))}</TableData> <TableData>{data.tt}</TableData> </tr>)}
-    </tbody>
+        fakeData.map((data,rank) => <tr className="border  text-center even:bg-[#C0C0C0]" key={data.title+rank}><TableData>{rank+1===1?"🥇 ":'\u00A0 \u00A0 \u00A0'}{(rank+1)}</TableData> <TableData className="font-semibold">{data.title.slice(0,1).toUpperCase().concat(data.title.slice(1)).slice(1,20)}</TableData> <TableData>{data.userId}</TableData> </tr>)}
+    </tbody> : <tr><td rowSpan={3}>Loading...</td></tr>}
     </Table>
    </TableWrapper>
 }
