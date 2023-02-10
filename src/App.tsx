@@ -1,5 +1,5 @@
-import Home from "./components/Home/Home";
-import LeaderBoard from "./components/LeaderBoard/LeaderBoard";
+import Home from "./components/Home/HomePage";
+import LeaderBoard from "./components/LeaderBoard/scorePage";
 
 
 function App():React.ReactElement {

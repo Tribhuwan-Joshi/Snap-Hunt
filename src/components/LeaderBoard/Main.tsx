@@ -5,15 +5,15 @@ const TableWrapper = styled.div`
 width : 100%;
 display:flex;
 justify-content : center;
+
 `
 
 const  Table = styled.table`
 
 table-layout : auto;
-border : 2px solid white;
 border-collapse : collapse;
 width:50%;
-background-color: rgb(107 114 128);
+background-color:#94b8b8;
 text-align : center;
 color:rgb(229 231 235);
 border-radius:10px;
@@ -23,7 +23,7 @@ border-radius:10px;
 const TableData = styled.td`
 padding : p-1;
 letter-spacing:1px;
-border:2px solid white;
+border:2px solid black;
 &.name {
     font-weight : 600;
 }
@@ -38,15 +38,16 @@ function TableContainer(){
 
     return <TableWrapper>
 <Table>
-    <thead className="bg-gray-800 text-base md:text-xl  ">
+    <caption className="text-base md:text-xl p-1">Your Rank : 129</caption>
+    <thead className="bg-gray-800 text-base md:text-xl   ">
         <tr>
-            <th className="whitespace-nowrap w-[20%] p-1 md:p-2 lg:p-3">
+            <th className="whitespace-nowrap  w-[20%] p-1 md:p-2 lg:p-3">
                 Rank
             </th>
-            <th className="whitespace-nowrap w-[40%] p-1 md:p-2 lg:p-3">
+            <th className="whitespace-nowrap  w-[40%] p-1 md:p-2 lg:p-3">
                 Name
             </th>
-            <th className="whitespace-nowrap w-[40%] p-1 md:p-2 lg:p-3">
+            <th className="whitespace-nowrap  w-[40%] p-1 md:p-2 lg:p-3">
                 Time Taken (sec)
             </th>
         </tr>
