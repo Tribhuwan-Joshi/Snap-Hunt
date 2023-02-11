@@ -68,7 +68,7 @@ const getData = async () => {
     </thead>
     {fakeData ?    <tbody className="text-base text-black lg:text-xl md:text-lg">
         {
-        fakeData.map((data,rank) => <tr className="border  text-center even:bg-[#C0C0C0]" key={data.title+rank}><TableData>{rank+1===1?"🥇 ":'\u00A0 \u00A0 \u00A0'}{(rank+1)}</TableData> <TableData className="font-semibold">{data.title.slice(0,1).toUpperCase().concat(data.title.slice(1)).slice(1,20)}</TableData> <TableData>{data.userId}</TableData> </tr>)}
+        fakeData.map((data,rank) => <tr className="border  text-center even:bg-[#C0C0C0]" key={data.title+rank}><TableData>{rank+1===1?"🥇 ":'\u00A0 \u00A0 \u00A0'}{(rank+1)}</TableData> <TableData>{data.title.slice(0,1).toUpperCase().concat(data.title.slice(1)).slice(1,20)}</TableData> <TableData>{data.userId}</TableData> </tr>)}
     </tbody> : <tr><td rowSpan={3}>Loading...</td></tr>}
     </Table>
    </TableWrapper>
@@ -80,7 +80,7 @@ const getData = async () => {
 function Main(){
     return <div className="flex flex-col gap-4 ">
     <div className="mx-auto w-max pt-4">
-        <button className="text-lg md:text-2xl cursor-pointer bg-gray-300 p-1 rounded-md hover:shadow-md active:bg-gray-200  font-mono border-2 border-black">Play again</button>
+        <button className="text-lg md:text-2xl cursor-pointer bg-gray-300 p-1 rounded-md hover:shadow-md hover:shadow-white active:bg-gray-200  font-mono border-2 border-black">Play again</button>
     </div>
     <TableContainer/>
     </div>
