@@ -6,7 +6,9 @@ function App():React.ReactElement {
 
   return (
     <>
-   <LeaderBoard/>
+   {/* <LeaderBoard/> */}
+
+   <Home/>
     </>)
 }
 

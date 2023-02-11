@@ -8,7 +8,10 @@ const characters: Array<{ url: string; alt: string }> = [
   { url: tom, alt: "Tom" },
 ];
 
-function Modal() {
+interface setterProps {
+  handlePlay:React.Dispatch<React.SetStateAction<boolean>>
+}
+function Modal({handlePlay}:setterProps) {
   return (
     <div className="h-screen z-[1000] w-screen fixed top-0 bg-gray-200/70">
       <div className=" rounded-lg text-center fixed translate-x-[-50%] translate-y-[-50%] left-[50%] top-[45%] border p-2 border-white bg-gray-900/90 text-white space-y-2">
@@ -34,7 +37,7 @@ function Modal() {
               </div>
             );
           })}
-          <button className="bg-gray-300 hover:bg-purple-200 active:bg-green-200 md:hover:scale-110 transition duration-500 ease-in-out text-black rounded-md px-2 py-1 font-sans my-6 w-18 md:w-24 md:text-3xl  text-2xl">
+          <button className="bg-gray-300 hover:bg-purple-200 active:bg-green-200 md:hover:scale-110 transition duration-500 ease-in-out text-black rounded-md px-2 py-1 font-sans my-6 w-18 md:w-24 md:text-3xl  text-2xl" onClick={()=>handlePlay(true)}>
             Play
           </button>
         </div>
