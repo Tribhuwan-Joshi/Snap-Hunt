@@ -11,7 +11,7 @@ const GameContext = createContext(false);
     return (
       <GameContext.Provider value={gameState}>
       <Header />
-      <Main/>
+      <Main />
     {!gameState ? <Modal startGame={ () => setGameState(!gameState)}/> : null}
       {/* <EndModal/> */}
       </GameContext.Provider>)

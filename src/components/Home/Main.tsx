@@ -9,6 +9,8 @@ function Main(){
   const [posX,setPosX]  =  useState(0);
   const [posY,setPosY]  = useState(0);
   const [aimVisible , setAimVisible] = useState(false);
+ 
+  
 
 
 
@@ -33,7 +35,7 @@ e.stopPropagation();
     {/* <FeedBack isCorrect={false} char="spike"/> */}
     { aimVisible ? 
     
-    <AimMenu posTop={posY} posLeft={posX} characters={["Spike" ,"Stewie" , "Tom"]} /> : null
+    <AimMenu posTop={posY} posLeft={posX}  characters={["Spike" ,"Stewie" , "Tom"]} /> : null
 }
 
     </div>

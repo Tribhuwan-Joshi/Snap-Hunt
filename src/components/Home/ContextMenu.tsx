@@ -9,7 +9,7 @@ left : ${props => String(props.posLeft)}px;
 `
 
  function Menu ({characters,posTop,posLeft}:Props){
-return <StyledMenu className="menu rounded-md z-50 px-2 text-white w-24 flex flex-col py-1 justify-center absolute text-center border border-black bg-black/80" posTop={posTop+20} posLeft={posLeft+20}>
+return <StyledMenu className="menu rounded-md z-50 px-2 gap-1 md:gap-2 cursor-pointer text-white w-24 flex flex-col py-1 justify-center absolute text-center border border-black bg-black/80" posTop={posTop+20} posLeft={posLeft+20}>
 
 {characters.map(c => {
     return  <h1 key={c} className="  py-1 cursor-pointer active:bg-gray-500/70 hover:bg-gray-700/70 border-gray-500 rounded-sm text-md">{c}</h1>
