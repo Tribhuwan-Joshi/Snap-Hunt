@@ -2,8 +2,9 @@ import spike from "../../assets/spike.jpg"
 import stewie from "../../assets/stewie.png"
 import tom from "../../assets/tom.png"
 import hamburger from "../../assets/hamburger.png"
-import { useState } from "react";
-
+import { useContext, useEffect, useState } from "react";
+import {GameContext} from "./HomePage"
+import {secondsToTimeFormat} from "../../utility"
 const characters:Array<{url:string , alt:string}> = [{url:spike,alt:"Spike"},{url:stewie,alt:"Stewie"},{url:tom,alt:"Tom"}];
 
 
@@ -32,12 +33,11 @@ function Characters(){
   }
 
   interface timeProps{
-    mins : string ;
-    secs:string;
+    timeString:string
   }
-function Timer({mins,secs} : timeProps){
+function Timer({timeString} : timeProps){
     return(<div className='flex text-2xl font-mono md:text-3xl lg:text-4xl gap-1'>
-    <h1>{mins}</h1><span>:</span><h1>{secs}</h1>
+    <h1>{timeString}</h1>
     </div>)
   }
 
@@ -47,13 +47,28 @@ function Logo(){
 }
 function Header(){
   const [barVisible , setBarVisible] = useState(false);
+  const gameState = useContext(GameContext);
+  const [secs,setSecs] = useState(0);
+  const [timeString , setTimeString] = useState<string>("");
+  useEffect(()=>{
+    let interval : NodeJS.Timer
+    if(gameState){
+    interval =   setInterval(()=>setSecs(prev=>prev+1) , 1000);
+
+    }
+    return () => clearInterval(interval);
+  },[gameState])
+useEffect(()=>{
+setTimeString(secondsToTimeFormat(secs));
+},[secs]);
   function handleBarClick(){
    
     setBarVisible(prev => !prev);
   }
+
     return <div className='h-12  md:px-2 lg:px-3 text-white  md:h-[11vh] flex justify-around lg:justify-between  md:justify-between items-center sticky top-0 z-50  w-full bg-gray-900 border-red-400  border-b-2 '>
 <Logo/>
-  <Timer mins="02" secs="14"/>
+  <Timer timeString = {timeString}/>
   <Characters/>
  
   <Hamburger handleBarClick={handleBarClick}/> 

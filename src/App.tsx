@@ -5,14 +5,11 @@ import LeaderBoard from "./components/LeaderBoard/scorePage";
 
 
 function App():React.ReactElement {
-  const [ gameStart , setGameState]  = useState(false);
-  const GameContext = createContext<boolean>(gameStart)
-  return (
-    <GameContext.Provider value={gameStart}>
+  return    <>
    {/* <LeaderBoard/> */}
 
    <Home/>
-    </GameContext.Provider>)
+    </>
 }
 
 

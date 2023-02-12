@@ -3,11 +3,11 @@ import Header from "./Header"
 import Main from "./Main"
 import Modal from "./startModal";
 import {createContext,useState} from "react"
-
+const GameContext = createContext(false);
 
 function Home():React.ReactElement {
 const [gameState , setGameState] = useState<boolean>(false);
-const GameContext = createContext(false);
+
     return (
       <GameContext.Provider value={gameState}>
       <Header />
@@ -19,3 +19,4 @@ const GameContext = createContext(false);
   
 
 export default Home
+export {GameContext}
