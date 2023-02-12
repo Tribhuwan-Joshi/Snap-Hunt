@@ -3,20 +3,18 @@ import Header from "./Header"
 import Main from "./Main"
 import Modal from "./startModal";
 import {createContext,useState} from "react"
-const GameContext = createContext(false);
 
-function Home():React.ReactElement {
-const [gameState , setGameState] = useState<boolean>(false);
+function Home({gameState , startGame}:{gameState:boolean , startGame:()=>void}):React.ReactElement {
+
 
     return (
-      <GameContext.Provider value={gameState}>
+      <>
       <Header />
       <Main />
-    {!gameState ? <Modal startGame={ () => setGameState(!gameState)}/> : null}
-      {/* <EndModal/> */}
-      </GameContext.Provider>)
+    {!gameState ? <Modal startGame={ () => startGame()}/> : null}
+      { /* <EndModal/> */ }
+      </>)
   }
   
 
 export default Home
-export {GameContext}
