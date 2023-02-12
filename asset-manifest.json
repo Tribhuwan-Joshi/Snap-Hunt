@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/Snap-Hunt/static/css/main.125b95a1.css",
+    "main.js": "/Snap-Hunt/static/js/main.805a8bf0.js",
+    "static/media/univ.jpg": "/Snap-Hunt/static/media/univ.314cec99f414807b7e27.jpg",
+    "static/media/spike.jpg": "/Snap-Hunt/static/media/spike.e54e2d8f2205beca504c.jpg",
+    "static/media/tom.png": "/Snap-Hunt/static/media/tom.59d6bbae333faab82799.png",
+    "static/media/stewie.png": "/Snap-Hunt/static/media/stewie.5c884ca542ca6999d0b5.png",
+    "index.html": "/Snap-Hunt/index.html",
+    "main.125b95a1.css.map": "/Snap-Hunt/static/css/main.125b95a1.css.map",
+    "main.805a8bf0.js.map": "/Snap-Hunt/static/js/main.805a8bf0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.125b95a1.css",
+    "static/js/main.805a8bf0.js"
+  ]
+}
