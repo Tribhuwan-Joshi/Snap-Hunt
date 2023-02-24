@@ -9,7 +9,7 @@ const StyledMenu = styled.div<{ posLeft: number; posTop: number }>`
 function Menu({ characters, posTop, posLeft }: Props) {
   return (
     <StyledMenu
-      className="menu rounded-md z-50 px-2 gap-1 md:gap-2 cursor-pointer text-white w-24 flex flex-col py-1 justify-center absolute text-center border border-black bg-black/80"
+      className="menu rounded-md z-50 px-1 md:px-2 gap-1 md:gap-2 cursor-pointer text-white w-16 md:w-24 flex flex-col py-1 justify-center absolute text-center border border-black bg-black/80"
       posTop={posTop + 20}
       posLeft={posLeft + 20}
     >
@@ -19,8 +19,10 @@ function Menu({ characters, posTop, posLeft }: Props) {
             key={c}
             onClick={(e) => {
               e.stopPropagation();
+              console.log(`clicked on ${e.currentTarget.dataset.character} at pos ${e.pageX} and ${e.pageY}`)
             }}
-            className="  py-1 cursor-pointer active:bg-gray-500/70 hover:bg-gray-700/70 border-gray-500 rounded-sm text-md"
+            data-character = {c}
+            className="  py-1 cursor-pointer active:bg-gray-500/70 hover:bg-gray-700/70 border-gray-500 rounded-sm text-sm md:text-base"
           >
             {c}
           </h1>
