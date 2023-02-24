@@ -58,10 +58,10 @@ const getData = async () => {
             <th className="whitespace-nowrap  w-[20%] p-1 md:p-2">
                 Rank
             </th>
-            <th className="whitespace-nowrap  w-[40%] p-1 md:p-2">
+            <th className="whitespace-nowrap  w-[60%] p-1 md:p-2">
                 Name
             </th>
-            <th className="whitespace-nowrap  w-[40%] p-1 md:p-2">
+            <th className="whitespace-nowrap  w-[20%] p-1 md:p-2">
                 Time Taken (sec)
             </th>
         </tr>

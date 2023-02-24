@@ -4,14 +4,14 @@ import Main from "./Main"
 import Modal from "./startModal";
 import {createContext,useState} from "react"
 
-function Home({gameState , startGame}:{gameState:boolean , startGame:()=>void}):React.ReactElement {
+function Home({gameState , startGame,timeString}:{gameState:boolean , timeString:string , startGame:()=>void}):React.ReactElement {
 
 
     return (
       <>
-      <Header />
+      <Header timeString={timeString}/>
       <Main />
-    {!gameState ? <Modal startGame={ () => startGame()}/> : null}
+    {!gameState && <Modal startGame={ () => startGame()}/>}
       { /* <EndModal/> */ }
       </>)
   }

@@ -2,9 +2,7 @@ import spike from "../../assets/spike.jpg";
 import stewie from "../../assets/stewie.png";
 import tom from "../../assets/tom.png";
 import hamburger from "../../assets/hamburger.png";
-import { useContext, useEffect, useState } from "react";
-import { GameContext } from "../../App";
-import { secondsToTimeFormat } from "../../utility";
+import {useState} from "react"
 const characters: Array<{ url: string; alt: string }> = [
   { url: spike, alt: "Spike" },
   { url: stewie, alt: "Stewie" },
@@ -81,18 +79,9 @@ function Logo() {
     </h1>
   );
 }
-function Header() {
+function Header({timeString}:{timeString:string}) {
   const [barVisible, setBarVisible] = useState(false);
-  const gameState = useContext(GameContext);
-  const [secs, setSecs] = useState(0);
-  useEffect(() => {
-    let interval: NodeJS.Timer;
-    if (gameState) {
-      interval = setInterval(() => setSecs((prev) => prev + 1), 1000);
-    }
-    return () => clearInterval(interval);
-  }, [gameState]);
-  const timeString = secondsToTimeFormat(secs);
+
   function handleBarClick() {
     setBarVisible((prev) => !prev);
   }
