@@ -1,39 +1,46 @@
-import { addDoc, doc, collection } from "firebase/firestore";
+import { setDoc, getDoc, doc, collection } from "firebase/firestore";
 import { db } from "./firebase-config";
 
 const locationRef = collection(db, "location");
 interface characterPos {
   name: string;
-  xRange: [number, number];
-  yRange: [number, number];
+  x: number;
+  y: number;
 }
 
 const charactersLoc: Array<characterPos> = [
   {
     name: "spike",
-    xRange: [342, 247],
-    yRange: [500, 512],
+    x: 59.7,
+    y: 77.1,
   },
   {
     name: "stewie",
-    xRange: [142, 147],
-    yRange: [200, 212],
+    x: 93.55,
+    y: 76.63,
   },
   {
     name: "tom",
-    xRange: [542, 547],
-    yRange: [800, 812],
+    x: 84.1,
+    y: 94.5,
   },
 ];
 
 (async () => {
   try {
     await Promise.all(
-      charactersLoc.map((c: characterPos) => addDoc(locationRef, c))
+      charactersLoc.map(async (c: characterPos) => {
+        const characterDocRef = doc(locationRef, c.name); // create a new document on collection reference locationRef with id c.name
+        const characterDoc = await getDoc(characterDocRef); // get its data using getDoc with reference
+        if (!characterDoc.exists()) {
+          await setDoc(characterDocRef, c);
+          return;
+        }
+        // setDoc on document reference created using doc
+      })
     );
-    console.log("Data added");
   } catch (err: unknown) {
     if (err instanceof Error) console.log(err.message);
-    else console.log("Unkown error occur");
+    else console.log("Unknown error occurred");
   }
 })();

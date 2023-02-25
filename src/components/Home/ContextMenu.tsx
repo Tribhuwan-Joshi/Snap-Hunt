@@ -19,7 +19,7 @@ function Menu({ characters, posTop, posLeft }: Props) {
             key={c}
             onClick={(e) => {
               e.stopPropagation();
-              console.log(`clicked on ${e.currentTarget.dataset.character} at pos ${e.pageX} and ${e.pageY}`)
+              
             }}
             data-character = {c}
             className="  py-1 cursor-pointer active:bg-gray-500/70 hover:bg-gray-700/70 border-gray-500 rounded-sm text-sm md:text-base"
@@ -30,7 +30,7 @@ function Menu({ characters, posTop, posLeft }: Props) {
       })}
     </StyledMenu>
   );
-}
+} 
 
 const AimDiv = styled.div<{ left: number; top: number }>`
   top: ${(props) => String(props.top)}px;
