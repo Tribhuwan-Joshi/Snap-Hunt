@@ -10,10 +10,10 @@ type CharFindContextType = {
 };
 
 const charFindContext = createContext<CharFindContextType>({
-  charList: [],
+  charList: ["spike","stewie","tom"],
   onCharFind: () => {},
   timeString:""
-});
+}); 
 function Home({gameState , startGame,timeString}:{gameState:boolean , timeString:string , startGame:()=>void}):React.ReactElement {
   const [charList, setCharList] = useState(["spike", "stewie","tom"]);
 

@@ -1,4 +1,4 @@
-import { setDoc, getDoc, getDocs, doc, collection } from "firebase/firestore";
+import { setDoc, getDoc,getDocs, doc, collection } from "firebase/firestore";
 import { db } from "./firebase-config";
 
 const locationRef = collection(db, "location");
@@ -45,17 +45,23 @@ const charactersLoc: Array<characterPos> = [
   }
 })();
 
-async function checkLocation(name: string, x: number, y: number) {
-  const data = await getDocs(locationRef);
-  const character = data.docs
-    .map((doc) => ({
-      ...doc.data(),
-    }))
-    .filter((c) => c.name === name)[0];
+async function checkLocation(name:string , x:number , y:number){
+const data = await getDocs(locationRef);
+ const character = data.docs.map((doc) => ({
+   ...doc.data()
+ })).filter(c => c.name===name)[0];
 
-  if (Math.abs(character.x - x) < 10 && Math.abs(character.y - y) < 10)
-    console.log("You found", name);
-  else console.log(name, "is  not there");
+console.log("ur x and y%" , x,y);
+console.log("character x and y% with character",character.x , character.y);
+if (
+  Math.abs(character.x - x) < 3 &&
+  Math.abs(character.y -y) < 3
+)
+  return true
+return false
+
+
 }
 
-export { checkLocation };
+
+export {checkLocation}

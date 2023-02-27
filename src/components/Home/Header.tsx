@@ -16,22 +16,16 @@ function Characters() {
     <div className="hidden md:flex lg:flex  justify-evenly  gap-10  items-center">
       {characters.map((i) => {
         const isFound = charList.includes(i.alt.toLowerCase());
+        const borderline = isFound ? "" : "border-2 border-green-600/80";
         return (
           <div
             key={i.alt}
-            className={`flex-1 font-mono w-[5vw] max-w-[50px] duration-500 items-center flex-col transistion ease-in-out flex md:hover:scale-110 ${
-              isFound ? "" : "underline-green"
-            }`}
+            className={`flex-1 box-content   font-mono w-[5vw] max-w-[50px] duration-500 items-center flex-col transistion ease-in-out flex md:hover:scale-110 
+             ${borderline}
+            `}
           >
             {" "}
-            <img
-              src={i.url}
-              alt={i.alt}
-              className={
-                isFound ? "" : "border-2 border-green-600 rounded-full"
-              }
-            />{" "}
-            <div>{i.alt}</div>{" "}
+            <img src={i.url} alt={i.alt} /> <div>{i.alt}</div>{" "}
           </div>
         );
       })}
