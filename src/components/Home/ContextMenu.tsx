@@ -1,12 +1,17 @@
 import styled from "styled-components";
 
-type Props = { characters: Array<string>; posTop: number; posLeft: number };
+type Props = {
+  characters: Array<string>;
+  posTop: number;
+  posLeft: number;
+  handleCharacterClick: (name: string) => void;
+};
 const StyledMenu = styled.div<{ posLeft: number; posTop: number }>`
   top: ${(props) => String(props.posTop)}px;
   left: ${(props) => String(props.posLeft)}px;
 `;
 
-function Menu({ characters, posTop, posLeft }: Props) {
+function Menu({ characters, posTop, posLeft, handleCharacterClick }: Props) {
   return (
     <StyledMenu
       className="menu rounded-md z-50 px-1 md:px-2 gap-1 md:gap-2 cursor-pointer text-white w-16 md:w-24 flex flex-col py-1 justify-center absolute text-center border border-black bg-black/80"
@@ -19,9 +24,10 @@ function Menu({ characters, posTop, posLeft }: Props) {
             key={c}
             onClick={(e) => {
               e.stopPropagation();
-              
+              handleCharacterClick(e.currentTarget.dataset.character || "");
             }}
-            data-character = {c}
+       
+            data-character={c}
             className="  py-1 cursor-pointer active:bg-gray-500/70 hover:bg-gray-700/70 border-gray-500 rounded-sm text-sm md:text-base"
           >
             {c}
@@ -30,7 +36,7 @@ function Menu({ characters, posTop, posLeft }: Props) {
       })}
     </StyledMenu>
   );
-} 
+}
 
 const AimDiv = styled.div<{ left: number; top: number }>`
   top: ${(props) => String(props.top)}px;
@@ -47,11 +53,16 @@ function Aim({ posTop, posLeft }: { posTop: number; posLeft: number }) {
   );
 }
 
-export default function AimMenu({ posTop, posLeft, characters }: Props) {
+export default function AimMenu({
+  posTop,
+  posLeft,
+  characters,
+  handleCharacterClick,
+}: Props) {
   return (
     <>
       <Aim posTop={posTop} posLeft={posLeft} />
-      <Menu posTop={posTop} posLeft={posLeft} characters={characters} />
+      <Menu posTop={posTop} posLeft={posLeft} characters={characters} handleCharacterClick={handleCharacterClick} />
     </>
   );
 }

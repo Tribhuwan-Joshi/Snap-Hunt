@@ -2,14 +2,22 @@ import univ from "../../assets/univ.jpg";
 import Modal from "./startModal";
 import FeedBack from "./Feedback";
 import AimMenu from "./ContextMenu";
-import { useEffect, useState, useRef } from "react";
+import { checkLocation } from "../../Firebase/gameData";
+import {charFindContext} from "./HomePage"
+import { useEffect, useState, useRef, useContext } from "react";
 
 function Main() {
+  const imgRef = useRef<HTMLImageElement>(null);
   const [posX, setPosX] = useState(0);
   const [posY, setPosY] = useState(0);
+  const [x, setX] = useState(0);
+  const [y, setY] = useState(0);
+  // const [clickCords, setClickCords] = useState<[number, number]>([0, 0]);
   const [aimVisible, setAimVisible] = useState(false);
+  const {charList} = useContext(charFindContext)
 
   function handleRightClick(posX: number, posY: number) {
+  
     setPosX(posX);
     setPosY(posY);
     setAimVisible(true);
@@ -17,30 +25,49 @@ function Main() {
   function hideAim() {
     setAimVisible(false);
   }
+  function handleCharacterClick(name: string) {
+    // setAimVisible(false);
+    // setHiddenCharacters(hiddenCharacters.filter(c=>c!==name))
+    if (imgRef.current) {
+ 
+     
+      const yPer =
+        parseFloat(
+          ((y / imgRef.current?.offsetHeight) * 100).toFixed(2)
+        ) ?? 0;
+      const xPer = 
+        parseFloat(
+          ((x/ imgRef.current.offsetWidth) * 100).toFixed(2)
+        ) ?? 0;
 
-  function handleChoose(e: React.MouseEvent<HTMLButtonElement>) {
-    e.stopPropagation();
+      checkLocation(name,xPer,yPer);
+    }
+    hideAim();
   }
-  const imgRef = useRef<HTMLImageElement>(null);
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {};
+  const handleContextClick = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    const img = imgRef.current;
+    if (img) {
+      const imgRect = img.getBoundingClientRect();
+      const x = e.clientX - imgRect.left;
+      const y = e.clientY - imgRect.top;
+     setX(x); setY(y);
+ 
+    }
+  
+     handleRightClick(e.pageX,e.pageY);
+    
+    
+  };
 
   return (
+
     <div
       className="main-app  cursor-aim  caret-black"
-      onContextMenu={(e) => {
-        e.preventDefault();
-        const img = imgRef.current;
-        if (img) {
-          const imgRect = img.getBoundingClientRect();
-          const x = e.clientX - imgRect.left;
-          const y = e.clientY - imgRect.top;
-          
-          console.log(`Image size: ${img.width} x ${img.height}`);
-          console.log(`Click location: ${x} x ${y}`);
-        }
-        handleRightClick(e.pageX, e.pageY);
-      }}
+      onContextMenu={handleContextClick}
       onClick={(e) => hideAim()}
       onDoubleClick={(e) => {
         e.preventDefault();
@@ -54,7 +81,8 @@ function Main() {
         <AimMenu
           posTop={posY}
           posLeft={posX}
-          characters={["Spike", "Stewie", "Tom"]}
+          characters={charList}
+          handleCharacterClick={handleCharacterClick}
         />
       ) : null}
     </div>

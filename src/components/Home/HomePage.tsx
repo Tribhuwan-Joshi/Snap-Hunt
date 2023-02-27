@@ -1,23 +1,49 @@
-import EndModal from "./endModal";
+// import EndModal from "./endModal";
 import Header from "./Header"
 import Main from "./Main"
 import Modal from "./startModal";
 import {createContext,useState} from "react"
+type CharFindContextType = {
+  charList: string[];
+  onCharFind: (name: string) => void;
+  timeString:string
+};
 
+const charFindContext = createContext<CharFindContextType>({
+  charList: [],
+  onCharFind: () => {},
+  timeString:""
+});
 function Home({gameState , startGame,timeString}:{gameState:boolean , timeString:string , startGame:()=>void}):React.ReactElement {
+  const [charList, setCharList] = useState(["spike", "stewie","tom"]);
+
+  function onCharFind(name: string) {
+    setCharList((prev) => prev.filter((c) => c !== name));
+  }
+
+  const contextValue = {
+    charList,
+    onCharFind,
+    timeString
+  };
 
 
     return (
-      <>
-      <Header timeString={timeString}/>
-      <Main />
-    {!gameState && <Modal startGame={ () => startGame()}/>}
-      { /* <EndModal/> */ }
-      </>)
+      <charFindContext.Provider value={contextValue}>
+        <Header  />
+        <Main />
+        {!gameState && <Modal startGame={() => startGame()} />}
+        {/* <EndModal/> */}
+      </charFindContext.Provider>
+    );
   }
   
 
 export default Home
+export {charFindContext}
+
+
+
 
 
 /*

@@ -39,7 +39,7 @@ interface Data{
     title:string;
 
 }
-const [loaded , setIsLoaded] = useState(false);
+// const [loaded , setIsLoaded] = useState(false);
 const [fakeData,setFakeData] = useState<Data[]>([]);
 useEffect(()=>{
 const getData = async () => {
