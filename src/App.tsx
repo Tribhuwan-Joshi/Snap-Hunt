@@ -8,9 +8,17 @@ const GameContext = createContext(false);
 
 function App(): React.ReactElement {
   const [gameState, setGameState] = useState<boolean>(false);
+  
   const [secs, setSecs] = useState(0);
   function startGame(): void {
     setGameState(true);
+  }
+  function endGame(){
+    setGameState(false);
+    
+  }
+  function getAndResetTimer(){
+    return secs;
   }
   useEffect(() => {
     let interval: NodeJS.Timer;
@@ -20,7 +28,7 @@ function App(): React.ReactElement {
 
     return () => {
       clearInterval(interval);
-      setSecs(0); // Reset the timer to 0 when the game ends
+      // Reset the timer to 0 when the game ends
     };
   }, [gameState]);
   const timeString = secondsToTimeFormat(secs);
@@ -34,7 +42,9 @@ function App(): React.ReactElement {
             <Home
               gameState={gameState}
               startGame={startGame}
+              endGame = {endGame}
               timeString={timeString}
+              getAndResetTimer={getAndResetTimer}
             />
           }
         />

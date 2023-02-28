@@ -1,50 +1,71 @@
-// import EndModal from "./endModal";
-import Header from "./Header"
-import Main from "./Main"
+import EndModal from "./endModal";
+import Header from "./Header";
+import Main from "./Main";
 import Modal from "./startModal";
-import {createContext,useState} from "react"
+import { createContext, useEffect, useState } from "react";
 type CharFindContextType = {
   charList: string[];
   onCharFind: (name: string) => void;
-  timeString:string
+  timeString: string;
 };
 
 const charFindContext = createContext<CharFindContextType>({
-  charList: ["spike","stewie","tom"],
+  charList: ["spike", "stewie", "tom"],
   onCharFind: () => {},
-  timeString:""
-}); 
-function Home({gameState , startGame,timeString}:{gameState:boolean , timeString:string , startGame:()=>void}):React.ReactElement {
-  const [charList, setCharList] = useState(["spike", "stewie","tom"]);
+  timeString: "",
+});
+function Home({
+  gameState,
+  startGame,
+  endGame,
+  timeString,
+  getAndResetTimer,
+}: {
+  gameState: boolean;
+  timeString: string;
+  startGame: () => void;
+  endGame: () => void;
+
+  getAndResetTimer: () => number;
+}): React.ReactElement {
+  const [charList, setCharList] = useState(["spike", "stewie", "tom"]);
+  const [totalTime, setTotalTime] = useState(0);
+  const [gameEnd, setGameEnd] = useState(false);
 
   function onCharFind(name: string) {
     setCharList((prev) => prev.filter((c) => c !== name));
   }
+  useEffect(() => {
+    if (charList.length === 0) {
+      setTotalTime(getAndResetTimer());
+      endGame();
+    } // setGameEnd true // set time to getSec
+    // show End Modal
+  }, [charList.length]);
+  useEffect(() => {
+    if (totalTime !== 0) {
+      setGameEnd(true);
+    }
+  }, [totalTime]);
 
   const contextValue = {
     charList,
     onCharFind,
-    timeString
+    timeString,
   };
 
+  return (
+    <charFindContext.Provider value={contextValue}>
+      <Header />
+      <Main />
+      {!gameState && !gameEnd && <Modal startGame={() => startGame()} />}
+      {gameEnd && <EndModal totalTime={totalTime} />}
+    </charFindContext.Provider>
+  );
+}
 
-    return (
-      <charFindContext.Provider value={contextValue}>
-        <Header  />
-        <Main />
-        {!gameState && <Modal startGame={() => startGame()} />}
-        {/* <EndModal/> */}
-      </charFindContext.Provider>
-    );
-  }
-  
-
-export default Home
-export {charFindContext}
-
-
-
-
+export default Home;
+export { charFindContext };
 
 /*
  positions 
