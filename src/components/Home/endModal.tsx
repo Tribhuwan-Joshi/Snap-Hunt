@@ -9,7 +9,7 @@ function EndModal({ totalTime }: { totalTime: number }) {
   }, []);
   // const [username, setUsername] = useState<string>("");
   function handleBoardClick() {
-    let name = inputRef.current?.value;
+    let name = inputRef.current?.value.trim();
     navigate("/leaderboard");
     if (name) {
       addUser(name, totalTime);

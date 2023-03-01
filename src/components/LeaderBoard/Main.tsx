@@ -34,8 +34,8 @@ function TableContainer() {
     name: string;
     totalTime: number;
   }
-  // const [loaded , setIsLoaded] = useState(false);
-  const [boardData, setBoardData] = useState< {[x: string]: any;}[]>([]);
+  const [rank,setRank]  = useState(0);
+  const [boardData, setBoardData] = useState<{ [x: string]: any }[]>([]);
   const leaderBoardRef = collection(db, "leaderboard");
   useEffect(() => {
     const getData = async () => {
@@ -44,16 +44,16 @@ function TableContainer() {
       const filteredData = res.docs.map((doc) => ({
         ...doc.data(),
       }));
-      console.log(filteredData);
+
       setBoardData(filteredData);
     };
     getData();
-  }, [leaderBoardRef]);
+  });
 
   return (
     <TableWrapper>
       <Table>
-        <caption className="text-base md:text-xl p-1">Your Rank : 129</caption>
+        <caption className="text-base md:text-xl p-1">Your Rank : {rank}</caption>
         <thead className="bg-blue-600 text-base md:text-xl   ">
           <tr>
             <th className="whitespace-nowrap  w-[20%] p-1 md:p-2">Rank</th>
@@ -67,21 +67,21 @@ function TableContainer() {
           <tbody className="text-base text-black lg:text-xl md:text-lg">
             {boardData.map((data, rank) => (
               <tr
-                className="border  text-center odd:bg-slate-400 even:bg-[#b6b4b4]"
-                key={data.title + rank}
+                className="border  text-center odd:bg-slate-300 even:bg-slate-400"
+                key={data.name + rank}
               >
                 <TableData>
                   {rank + 1 === 1 ? "🥇 " : "\u00A0 \u00A0 \u00A0"}
                   {rank + 1}
                 </TableData>
                 <TableData>
-                  {data.title
+                  {data.name
                     .slice(0, 1)
                     .toUpperCase()
-                    .concat(data.title.slice(1))
-                    .slice(1, 20)}
+                    .concat(data.name.slice(1))
+                    .slice(0, 20)}
                 </TableData>
-                <TableData>{data.userId}</TableData>
+                <TableData>{data.totalTime}</TableData>
               </tr>
             ))}
           </tbody>
