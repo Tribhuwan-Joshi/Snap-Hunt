@@ -17,7 +17,7 @@ function Main() {
   const [currentChar, setCurrentChar] = useState("");
 
   const [aimVisible, setAimVisible] = useState(false);
-  const { charList,onCharFind } = useContext(charFindContext);
+  const { charList, onCharFind } = useContext(charFindContext);
 
   function handleRightClick(posX: number, posY: number) {
     setPosX(posX);
@@ -39,7 +39,7 @@ function Main() {
       setShowFeed(true);
       setCurrentChar(name);
       setTimeout(() => setShowFeed(false), 1500);
-      if(res) onCharFind(name);
+      if (res) onCharFind(name);
     }
     hideAim();
   }
@@ -65,10 +65,7 @@ function Main() {
       className="main-app  cursor-aim  caret-black"
       onContextMenu={handleContextClick}
       onClick={(e) => hideAim()}
-      onDoubleClick={(e) => {
-        e.preventDefault();
-        handleRightClick(e.pageX, e.pageY);
-      }}
+      onDoubleClick={handleContextClick}
     >
       <img src={univ} ref={imgRef} alt="univ" />
 

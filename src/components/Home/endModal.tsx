@@ -1,10 +1,16 @@
-import { useEffect, useRef } from "react";
-
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 function EndModal({ totalTime }: { totalTime: number }) {
+  const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
+  const [username, setUsername] = useState<string>("");
+  function handleBoardClick() {
+    // let name = inputRef.current?.name;
+    navigate("/leaderboard");
+  }
   return (
     <div className="h-screen z-[1000] w-screen fixed top-0 bg-gray-200/70">
       <div className=" min-w-[200px] md:min-w-[300px] rounded-lg text-center fixed translate-x-[-50%] translate-y-[-50%] left-[50%] top-[45%] border flex flex-col justify-between h-max  p-2 md:p-4 border-white bg-gray-900/90 text-white gap-4 space-y-2 md:space-y-4">
@@ -20,10 +26,16 @@ function EndModal({ totalTime }: { totalTime: number }) {
             ref={inputRef}
             minLength={3}
             maxLength={20}
-            className="p-1 w-[80%] bg-black/50"
+            className="p-1 px-2 w-[80%] tracking-wider bg-black/50"
+            type="text"
+            autoComplete="off"
           />
-          {/* <div className="username-feedback text-sm ">Username already taken</div> */}
-          <button className="bg-gray-300 hover:bg-purple-200 active:bg-green-200 md:hover:scale-110 transition duration-500 ease-in-out text-black rounded-md px-2 py-1 font-sans my-4   md:text-xl  text-base">
+
+
+          <button
+            className="bg-gray-300 hover:bg-purple-200 active:bg-green-200 md:hover:scale-110 transition duration-500 ease-in-out text-black rounded-md px-2 py-1 font-sans my-4   md:text-xl  text-base"
+            onClick={handleBoardClick}
+          >
             Leaderboard
           </button>
         </div>
