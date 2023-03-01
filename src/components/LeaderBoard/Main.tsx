@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import React from "react";
 import { useState, useEffect } from "react";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import { db } from "../../Firebase/firebase-config";
 
 const TableWrapper = styled.div`
   width: 100%;
@@ -29,20 +31,24 @@ const TableData = styled.td`
 
 function TableContainer() {
   interface Data {
-    userId: number;
-    title: string;
+    name: string;
+    totalTime: number;
   }
   // const [loaded , setIsLoaded] = useState(false);
-  const [fakeData, setFakeData] = useState<Data[]>([]);
+  const [boardData, setBoardData] = useState< {[x: string]: any;}[]>([]);
+  const leaderBoardRef = collection(db, "leaderboard");
   useEffect(() => {
     const getData = async () => {
-      const res = await fetch(
-        "https://jsonplaceholder.typicode.com/posts"
-      ).then((res) => res.json());
-      setFakeData(res);
+      const q = query(leaderBoardRef, orderBy("totalTime"));
+      const res = await getDocs(q);
+      const filteredData = res.docs.map((doc) => ({
+        ...doc.data(),
+      }));
+      console.log(filteredData);
+      setBoardData(filteredData);
     };
     getData();
-  });
+  }, [leaderBoardRef]);
 
   return (
     <TableWrapper>
@@ -57,11 +63,11 @@ function TableContainer() {
             </th>
           </tr>
         </thead>
-        {fakeData ? (
+        {boardData ? (
           <tbody className="text-base text-black lg:text-xl md:text-lg">
-            {fakeData.map((data, rank) => (
+            {boardData.map((data, rank) => (
               <tr
-                className="border  text-center even:bg-[#C0C0C0]"
+                className="border  text-center odd:bg-slate-400 even:bg-[#b6b4b4]"
                 key={data.title + rank}
               >
                 <TableData>
@@ -93,7 +99,7 @@ function Main() {
   return (
     <div className="flex flex-col gap-4 bg-[#252c3d] ">
       <div className="mx-auto w-max pt-4">
-        <button className="text-lg md:text-2xl cursor-pointer bg-gray-300 p-1 rounded-md hover:shadow-md hover:shadow-white active:bg-gray-200  font-mono border-2 border-black">
+        <button className="text-lg md:text-2xl cursor-pointer bg-gray-300 p-1 rounded-md hover:shadow-md    active:bg-gray-200  font-mono border-2 border-black">
           Play again
         </button>
       </div>

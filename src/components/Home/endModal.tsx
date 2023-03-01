@@ -1,15 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { addUser } from "../../Firebase/gameData";
 function EndModal({ totalTime }: { totalTime: number }) {
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
-  const [username, setUsername] = useState<string>("");
+  // const [username, setUsername] = useState<string>("");
   function handleBoardClick() {
-    // let name = inputRef.current?.name;
+    let name = inputRef.current?.value;
     navigate("/leaderboard");
+    if (name) {
+      addUser(name, totalTime);
+    }
   }
   return (
     <div className="h-screen z-[1000] w-screen fixed top-0 bg-gray-200/70">
@@ -30,7 +34,6 @@ function EndModal({ totalTime }: { totalTime: number }) {
             type="text"
             autoComplete="off"
           />
-
 
           <button
             className="bg-gray-300 hover:bg-purple-200 active:bg-green-200 md:hover:scale-110 transition duration-500 ease-in-out text-black rounded-md px-2 py-1 font-sans my-4   md:text-xl  text-base"

@@ -1,7 +1,15 @@
-import { setDoc, getDoc, getDocs, doc, collection } from "firebase/firestore";
+import {
+  setDoc,
+  addDoc,
+  getDoc,
+  getDocs,
+  doc,
+  collection,
+} from "firebase/firestore";
 import { db } from "./firebase-config";
 
 const locationRef = collection(db, "location");
+const leaderBoardRef = collection(db, "leaderboard");
 interface characterPos {
   name: string;
   x: number;
@@ -58,4 +66,9 @@ async function checkLocation(name: string, x: number, y: number) {
   return false;
 }
 
-export { checkLocation };
+async function addUser(name: string, totalTime: number) {
+ 
+  await addDoc(leaderBoardRef, { name, totalTime });
+}
+
+export { checkLocation, addUser };
