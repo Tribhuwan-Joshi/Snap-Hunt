@@ -1,4 +1,4 @@
-## SnapHunt
+## [SnapHunt](https://tribhuwan-joshi.github.io/Snap-Hunt/)
 ![Preview Image](https://raw.githubusercontent.com/Tribhuwan-Joshi/Snap-Hunt/main/public/snapHunt.png)
 #### A photo tagging game to find characters inside the image
 - Global leaderboard to see your rank 
