@@ -1,5 +1,5 @@
 ## SnapHunt
-[!preview](https://github.com/Tribhuwan-Joshi/Snap-Hunt/tree/main/public/snapHunt.png)
+![Preview Image](https://raw.githubusercontent.com/Tribhuwan-Joshi/Snap-Hunt/main/public/snapHunt.png)
 #### A photo tagging game to find characters inside the image
 - Global leaderboard to see your rank 
 - Time based ranking - find all the characters fastly to beat other players.
