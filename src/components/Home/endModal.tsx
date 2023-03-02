@@ -1,7 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { addUser } from "../../Firebase/gameData";
-function EndModal({ totalTime }: { totalTime: number }) {
+function EndModal({
+  totalTime,
+  handleUser,
+}: {
+  totalTime: number;
+  handleUser: (name: string) => void;
+}) {
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
@@ -13,6 +19,7 @@ function EndModal({ totalTime }: { totalTime: number }) {
     navigate("/leaderboard");
     if (name) {
       addUser(name, totalTime);
+      handleUser(name);
     }
   }
   return (

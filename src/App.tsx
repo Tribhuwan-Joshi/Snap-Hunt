@@ -4,11 +4,11 @@ import Home from "./components/Home/HomePage";
 import LeaderBoard from "./components/LeaderBoard/scorePage";
 import "./Firebase/gameData";
 import { secondsToTimeFormat } from "./utility";
-const GameContext = createContext(false);
+const GameContext = createContext([false,""]);
 
 function App(): React.ReactElement {
   const [gameState, setGameState] = useState<boolean>(false);
-  
+  const [username,setUsername] = useState<string>("");
   const [secs, setSecs] = useState(0);
   function startGame(): void {
     setGameState(true);
@@ -45,6 +45,7 @@ function App(): React.ReactElement {
               endGame = {endGame}
               timeString={timeString}
               getAndResetTimer={getAndResetTimer}
+              handleUser={(name)=>setUsername(name)}
             />
           }
         />
@@ -52,7 +53,7 @@ function App(): React.ReactElement {
         <Route
           path="/leaderboard"
           element={
-            <GameContext.Provider value={gameState}>
+            <GameContext.Provider value={[gameState,username]}>
               <LeaderBoard />{" "}
             </GameContext.Provider>
           }

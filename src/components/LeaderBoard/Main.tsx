@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useContext } from "react";
 import { useState, useEffect } from "react";
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { db } from "../../Firebase/firebase-config";
+import { GameContext } from "../../App";
 
 const TableWrapper = styled.div`
   width: 100%;
@@ -30,11 +31,8 @@ const TableData = styled.td`
 `;
 
 function TableContainer() {
-  interface Data {
-    name: string;
-    totalTime: number;
-  }
-  const [rank,setRank]  = useState(0);
+const username = useContext(GameContext)[1];
+  const [rank, setRank] = useState(0);
   const [boardData, setBoardData] = useState<{ [x: string]: any }[]>([]);
   const leaderBoardRef = collection(db, "leaderboard");
   useEffect(() => {
@@ -44,6 +42,8 @@ function TableContainer() {
       const filteredData = res.docs.map((doc) => ({
         ...doc.data(),
       }));
+      const rank = filteredData.findIndex((i) => i.name === username);
+      setRank(rank + 1);
 
       setBoardData(filteredData);
     };
@@ -53,7 +53,9 @@ function TableContainer() {
   return (
     <TableWrapper>
       <Table>
-        <caption className="text-base md:text-xl p-1">Your Rank : {rank}</caption>
+        <caption className="text-base md:text-xl p-1">
+          Your Rank : {rank}
+        </caption>
         <thead className="bg-blue-600 text-base md:text-xl   ">
           <tr>
             <th className="whitespace-nowrap  w-[20%] p-1 md:p-2">Rank</th>
@@ -97,7 +99,7 @@ function TableContainer() {
 
 function Main() {
   return (
-    <div className="flex flex-col gap-4 bg-[#252c3d] ">
+    <div className="flex flex-col gap-4  ">
       <div className="mx-auto w-max pt-4">
         <button className="text-lg md:text-2xl cursor-pointer bg-gray-300 p-1 rounded-md hover:shadow-md    active:bg-gray-200  font-mono border-2 border-black">
           Play again

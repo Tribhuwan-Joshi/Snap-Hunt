@@ -20,11 +20,13 @@ function Home({
   endGame,
   timeString,
   getAndResetTimer,
+  handleUser,
 }: {
   gameState: boolean;
   timeString: string;
   startGame: () => void;
   endGame: () => void;
+  handleUser:(name:string)=>void;
 
   getAndResetTimer: () => number;
 }): React.ReactElement {
@@ -59,7 +61,7 @@ function Home({
       <Header />
       <Main />
       {!gameState && !gameEnd && <Modal startGame={() => startGame()} />}
-      {gameEnd && <EndModal totalTime={totalTime} />}
+      {gameEnd && <EndModal totalTime={totalTime} handleUser={handleUser} />}
     </charFindContext.Provider>
   );
 }
