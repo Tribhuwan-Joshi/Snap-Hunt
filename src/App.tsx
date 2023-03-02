@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  useNavigate,
+
 } from "react-router-dom";
 import Home from "./components/Home/HomePage";
 import LeaderBoard from "./components/LeaderBoard/scorePage";
