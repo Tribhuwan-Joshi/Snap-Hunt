@@ -7,10 +7,10 @@ overflow : auto;
 padding-bottom:4px;
 `
 
-function LeaderBoard(){
+function LeaderBoard({handleRestart}:{handleRestart:()=>void}){
     return <Wrapper>
     <Header/>
-    <Main/>
+    <Main handleRestart={handleRestart}/>
     </Wrapper>
 }
 

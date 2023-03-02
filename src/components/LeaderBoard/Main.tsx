@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { db } from "../../Firebase/firebase-config";
 import { GameContext } from "../../App";
+import { Link } from "react-router-dom";
 
 const TableWrapper = styled.div`
   width: 100%;
@@ -31,7 +32,7 @@ const TableData = styled.td`
 `;
 
 function TableContainer() {
-const username = useContext(GameContext)[1];
+  const username = useContext(GameContext)[1];
   const [rank, setRank] = useState(0);
   const [boardData, setBoardData] = useState<{ [x: string]: any }[]>([]);
   const leaderBoardRef = collection(db, "leaderboard");
@@ -69,7 +70,7 @@ const username = useContext(GameContext)[1];
           <tbody className="text-base text-black lg:text-xl md:text-lg">
             {boardData.map((data, rank) => (
               <tr
-                className="border  text-center odd:bg-slate-300 even:bg-slate-400"
+                className="border  text-center odd:bg-red-100 even:bg-slate-100"
                 key={data.name + rank}
               >
                 <TableData>
@@ -97,13 +98,18 @@ const username = useContext(GameContext)[1];
   );
 }
 
-function Main() {
+function Main({ handleRestart }: { handleRestart: () => void }) {
   return (
     <div className="flex flex-col gap-4  ">
       <div className="mx-auto w-max pt-4">
-        <button className="text-lg md:text-2xl cursor-pointer bg-gray-300 p-1 rounded-md hover:shadow-md    active:bg-gray-200  font-mono border-2 border-black">
-          Play again
-        </button>
+        <Link to="../">
+          <button
+            className="text-lg md:text-2xl cursor-pointer bg-gray-300 p-1 rounded-md hover:shadow-md    active:bg-gray-200  font-mono border-2 border-black"
+            onClick={handleRestart}
+          >
+            Play again
+          </button>
+        </Link>
       </div>
       <TableContainer />
     </div>

@@ -1,23 +1,32 @@
 import { createContext, useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom";
 import Home from "./components/Home/HomePage";
 import LeaderBoard from "./components/LeaderBoard/scorePage";
 import "./Firebase/gameData";
 import { secondsToTimeFormat } from "./utility";
-const GameContext = createContext([false,""]);
+const GameContext = createContext([false, ""]);
 
 function App(): React.ReactElement {
   const [gameState, setGameState] = useState<boolean>(false);
-  const [username,setUsername] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
   const [secs, setSecs] = useState(0);
   function startGame(): void {
     setGameState(true);
   }
-  function endGame(){
+
+  function endGame() {
     setGameState(false);
-    
   }
-  function getAndResetTimer(){
+  function handleRestart() {
+    setGameState(false);
+    setSecs(0);
+  }
+  function getAndResetTimer() {
     return secs;
   }
   useEffect(() => {
@@ -42,10 +51,10 @@ function App(): React.ReactElement {
             <Home
               gameState={gameState}
               startGame={startGame}
-              endGame = {endGame}
+              endGame={endGame}
               timeString={timeString}
               getAndResetTimer={getAndResetTimer}
-              handleUser={(name)=>setUsername(name)}
+              handleUser={(name) => setUsername(name)}
             />
           }
         />
@@ -53,8 +62,8 @@ function App(): React.ReactElement {
         <Route
           path="/leaderboard"
           element={
-            <GameContext.Provider value={[gameState,username]}>
-              <LeaderBoard />{" "}
+            <GameContext.Provider value={[gameState, username]}>
+              <LeaderBoard handleRestart={handleRestart} />
             </GameContext.Provider>
           }
         />

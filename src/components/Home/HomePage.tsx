@@ -48,6 +48,8 @@ function Home({
     if (totalTime !== 0) {
       setGameEnd(true);
     }
+    return () => setGameEnd(false);
+    
   }, [totalTime]);
 
   const contextValue = {
