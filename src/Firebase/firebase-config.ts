@@ -1,12 +1,12 @@
 import { initializeApp } from "firebase/app";
-import {getFirestore} from "firebase/firestore"
+import { getFirestore } from "firebase/firestore";
 const firebaseConfig = {
-  apiKey: "AIzaSyAH1eS6whB_5jiVVX5SfGfL63n8NyiL08w",
-  authDomain: "snaphunt69420.firebaseapp.com",
-  projectId: "snaphunt69420",
-  storageBucket: "snaphunt69420.appspot.com",
-  messagingSenderId: "39722632302",
-  appId: "1:39722632302:web:8f3e4d9ab5ae0776f3527f"
+  apiKey: "AIzaSyDZphjUHRFFrgP46ieL63zoscrHvkIagx4",
+  authDomain: "snaphunt6969.firebaseapp.com",
+  projectId: "snaphunt6969",
+  storageBucket: "snaphunt6969.appspot.com",
+  messagingSenderId: "350730597266",
+  appId: "1:350730597266:web:58488da2a774a92169074b",
 };
 
 export const app = initializeApp(firebaseConfig);
